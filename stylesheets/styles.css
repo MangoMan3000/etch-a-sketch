@@ -1,0 +1,12 @@
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.container {
+    width: 720px;
+    height: 720px;
+    border-style: solid;
+    border-color: black;
+}
