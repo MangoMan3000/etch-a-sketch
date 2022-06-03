@@ -11,9 +11,16 @@ function buildGrid(value) {
         for (let j = 0; j < value; j++) {
             let innerDiv = document.createElement("div");
             innerDiv.style.flex = "1";
+            innerDiv.classList.add("innerDiv");
             rowDiv.appendChild(innerDiv);
         }
     }
 }
 
 buildGrid(16);
+
+const innerDiv = document.querySelectorAll(".innerDiv");
+
+innerDiv.forEach(div => div.addEventListener("mouseover", function(e) {
+    div.style.backgroundColor = "black";
+}));
