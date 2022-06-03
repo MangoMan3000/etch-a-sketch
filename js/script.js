@@ -24,3 +24,14 @@ const innerDiv = document.querySelectorAll(".innerDiv");
 innerDiv.forEach(div => div.addEventListener("mouseover", function(e) {
     div.style.backgroundColor = "black";
 }));
+
+const changeSize = document.querySelector("#gridValue");
+
+changeSize.addEventListener("click", function(e){
+    let value = prompt("What size grid would you like to sketch on?");
+    if (value > 100 || value < 1) {
+        alert("Cannot Compute");
+    } else {
+        buildGrid(value);
+    }
+})
