@@ -17,14 +17,15 @@ function buildGrid(value) {
     }
 }
 
+function clearGrid() {
+    while (container.firstChild) {
+        container.removeChild(container.firstChild);
+    }
+}
+
 buildGrid(16);
 
 const innerDiv = document.querySelectorAll(".innerDiv");
-
-innerDiv.forEach(div => div.addEventListener("mouseover", function(e) {
-    div.style.backgroundColor = "black";
-}));
-
 const changeSize = document.querySelector("#gridValue");
 
 changeSize.addEventListener("click", function(e){
@@ -32,6 +33,11 @@ changeSize.addEventListener("click", function(e){
     if (value > 100 || value < 1) {
         alert("Cannot Compute");
     } else {
+        clearGrid();
         buildGrid(value);
     }
-})
+});
+
+innerDiv.forEach(div => div.addEventListener("mouseover", function(e) {
+    div.style.backgroundColor = "black";
+}));
