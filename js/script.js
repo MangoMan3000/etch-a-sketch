@@ -57,10 +57,14 @@ changeSize.addEventListener("click", function(e){
     }
 });
 
+function randomize() {
+    return `rgba(${Math.floor(Math.random()*256)},${Math.floor(Math.random()*256)},${Math.floor(Math.random()*256)},1)`;
+}
+
 randomColor.addEventListener("click", function(e){
     redValue = Math.floor(Math.random()*256);
     greenValue = Math.floor(Math.random()*256)
     blueValue = Math.floor(Math.random()*256)
     color = `rgba(${redValue},${greenValue},${blueValue},${alphaValue})`;
-    listenForHover(color);
+    listenForHover(randomize());
 });
