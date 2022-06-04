@@ -13,3 +13,12 @@ body {
     flex-direction: column;
     flex-wrap: wrap;
 }
+
+.buttons {
+    margin-bottom: 25px;
+}
+
+button {
+    margin-left: 25px;
+    margin-right: 25px;
+}
