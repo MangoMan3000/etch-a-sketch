@@ -16,7 +16,7 @@ function buildGrid(value) {
         }
     }
     selectDivs();
-    listenForHover();
+    listenForHover(color);
 };
 
 function clearGrid() {
@@ -30,14 +30,20 @@ function selectDivs() {
     return innerDiv = document.querySelectorAll(".innerDiv");
 }
 
-function listenForHover() {
+function listenForHover(color) {
     innerDiv.forEach(div => div.addEventListener("mouseover", function(e) {
-        div.style.backgroundColor = "black";
+        div.style.backgroundColor = color;
     }));
 };
 
 let innerDiv = document.querySelectorAll(".innerDiv");
 const changeSize = document.querySelector("#gridValue");
+const randomColor = document.querySelector("#randomColor");
+let redValue = 0;
+let greenValue = 0;
+let blueValue = 0;
+let alphaValue = 1;
+let color = `rgba(${redValue},${greenValue},${blueValue},${alphaValue})`;
 
 buildGrid(16);
 
@@ -51,3 +57,10 @@ changeSize.addEventListener("click", function(e){
     }
 });
 
+randomColor.addEventListener("click", function(e){
+    redValue = Math.floor(Math.random()*256);
+    greenValue = Math.floor(Math.random()*256)
+    blueValue = Math.floor(Math.random()*256)
+    color = `rgba(${redValue},${greenValue},${blueValue},${alphaValue})`;
+    listenForHover(color);
+});
