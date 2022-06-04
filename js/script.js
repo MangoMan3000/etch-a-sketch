@@ -1,11 +1,11 @@
 const container = document.querySelector(".container");
 
 // take a value and build a grid of divs inside the container //
-
+// create a nodeList and add listener for hover to change color //
 function buildGrid(value) {
     for (let i = 0; i < value; i++) {
         let rowDiv = document.createElement("div");
-        rowDiv.style.display = "flex"
+        rowDiv.style.display = "flex";
         rowDiv.style.flex = "1";
         container.appendChild(rowDiv)
         for (let j = 0; j < value; j++) {
@@ -15,18 +15,31 @@ function buildGrid(value) {
             rowDiv.appendChild(innerDiv);
         }
     }
-}
+    selectDivs();
+    listenForHover();
+};
 
 function clearGrid() {
     while (container.firstChild) {
         container.removeChild(container.firstChild);
     }
+};
+
+// select divs and add event listener //
+function selectDivs() {
+    return innerDiv = document.querySelectorAll(".innerDiv");
 }
 
-buildGrid(16);
+function listenForHover() {
+    innerDiv.forEach(div => div.addEventListener("mouseover", function(e) {
+        div.style.backgroundColor = "black";
+    }));
+};
 
-const innerDiv = document.querySelectorAll(".innerDiv");
+let innerDiv = document.querySelectorAll(".innerDiv");
 const changeSize = document.querySelector("#gridValue");
+
+buildGrid(16);
 
 changeSize.addEventListener("click", function(e){
     let value = prompt("What size grid would you like to sketch on?");
@@ -38,6 +51,3 @@ changeSize.addEventListener("click", function(e){
     }
 });
 
-innerDiv.forEach(div => div.addEventListener("mouseover", function(e) {
-    div.style.backgroundColor = "black";
-}));
