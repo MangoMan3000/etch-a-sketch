@@ -68,7 +68,6 @@ function listenForHover() {
                 default:
                     color = "rgb(230,230,230)";
             }
-            console.log(div.style.backgroundColor);
         }
         div.style.backgroundColor = color;
     }));
