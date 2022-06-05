@@ -21,6 +21,7 @@ function clearGrid() {
     while (container.firstChild) {
         container.removeChild(container.firstChild);
     }
+    buildGrid(value);
 };
 
 function selectDivs() {
@@ -88,7 +89,6 @@ buildGrid(value);
 
 clear.addEventListener("click", function(e) {
     clearGrid();
-    buildGrid(value);
     listenForHover();
 })
 
@@ -98,7 +98,6 @@ changeSize.addEventListener("click", function(e){
         alert("Cannot Compute");
     } else {
         clearGrid();
-        buildGrid(value);
     }
 });
 
@@ -107,8 +106,8 @@ randomColor.addEventListener("click", function(e){
         random = false;
     } else {
         random = true;
+        scaling = false;
         clearGrid();
-        buildGrid(value);
     }    
 });
 
@@ -117,7 +116,7 @@ greyScale.addEventListener("click", function(e) {
         scaling = false;
     } else {
         scaling = true;
+        random = false;
         clearGrid();
-        buildGrid(value);
     }
 });
