@@ -1,5 +1,5 @@
-// take a value and build a grid of divs inside the container //
-// create a nodeList and add listener for hover to change color //
+// Take a value and build a grid of divs inside the container //
+// Create a nodeList and add listener for hover to change color //
 function buildGrid(value) {
     for (let i = 0; i < value; i++) {
         let rowDiv = document.createElement("div");
@@ -23,17 +23,23 @@ function clearGrid() {
     }
 };
 
-// select divs and add event listener //
 function selectDivs() {
-    return innerDiv = document.querySelectorAll(".innerDiv");
+    innerDiv = document.querySelectorAll(".innerDiv");
 }
 
 function listenForHover() {
     innerDiv.forEach(div => div.addEventListener("mouseover", function(e) {
         if (random) {
-            color = `rgba(${Math.floor(Math.random()*256)},${Math.floor(Math.random()*256)},${Math.floor(Math.random()*256)})`
+            color = `rgb(${Math.floor(Math.random()*256)},${Math.floor(Math.random()*256)},${Math.floor(Math.random()*256)})`
         } else {
-            color = "black"
+            color = "rgb(0,0,0)"
+        }
+        if (scaling) {
+            const colorAdd = 25.5;
+            rValue -= colorAdd;
+            gValue -= colorAdd;
+            bValue -= colorAdd;
+            color = `rgba(${rValue},${gValue},${bValue})`
         }
         div.style.backgroundColor = color;
     }));
@@ -44,9 +50,14 @@ let innerDiv = document.querySelectorAll(".innerDiv");
 const changeSize = document.querySelector("#gridValue");
 const randomColor = document.querySelector("#randomColor");
 const clear = document.querySelector("#clearGrid");
+const greyScale = document.querySelector("#greyScale");
 let value = 16;
-let color = "black";
+let rValue = 0;
+let gValue = 0;
+let bValue = 0;
+let color = `rgb(${rValue},${gValue},${bValue})`;
 let random = false;
+let scaling = false;
 
 buildGrid(value);
 
@@ -72,4 +83,16 @@ randomColor.addEventListener("click", function(e){
     } else {
         random = true;
     }    
+});
+
+greyScale.addEventListener("click", function(e) {
+    if (scaling) {
+        scaling = false;
+    } else {
+        scaling = true;
+        rValue = 255;
+        gValue = 255;
+        bValue = 255;
+        color = `rgb(${rValue},${gValue},${bValue})`;
+    }
 });
