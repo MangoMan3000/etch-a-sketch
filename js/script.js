@@ -1,5 +1,3 @@
-const container = document.querySelector(".container");
-
 // take a value and build a grid of divs inside the container //
 // create a nodeList and add listener for hover to change color //
 function buildGrid(value) {
@@ -16,7 +14,7 @@ function buildGrid(value) {
         }
     }
     selectDivs();
-    listenForHover(color);
+    listenForHover();
 };
 
 function clearGrid() {
@@ -30,25 +28,36 @@ function selectDivs() {
     return innerDiv = document.querySelectorAll(".innerDiv");
 }
 
-function listenForHover(color) {
+function listenForHover() {
     innerDiv.forEach(div => div.addEventListener("mouseover", function(e) {
+        if (random) {
+            color = `rgba(${Math.floor(Math.random()*256)},${Math.floor(Math.random()*256)},${Math.floor(Math.random()*256)})`
+        } else {
+            color = "black"
+        }
         div.style.backgroundColor = color;
     }));
 };
 
+const container = document.querySelector(".container");
 let innerDiv = document.querySelectorAll(".innerDiv");
 const changeSize = document.querySelector("#gridValue");
 const randomColor = document.querySelector("#randomColor");
-let redValue = 0;
-let greenValue = 0;
-let blueValue = 0;
-let alphaValue = 1;
-let color = `rgba(${redValue},${greenValue},${blueValue},${alphaValue})`;
+const clear = document.querySelector("#clearGrid");
+let value = 16;
+let color = "black";
+let random = false;
 
-buildGrid(16);
+buildGrid(value);
+
+clear.addEventListener("click", function(e) {
+    clearGrid();
+    buildGrid(value);
+    listenForHover();
+})
 
 changeSize.addEventListener("click", function(e){
-    let value = prompt("What size grid would you like to sketch on?");
+    value = parseInt(prompt("What size grid would you like to sketch on?"));
     if (value > 100 || value < 1) {
         alert("Cannot Compute");
     } else {
@@ -57,14 +66,10 @@ changeSize.addEventListener("click", function(e){
     }
 });
 
-function randomize() {
-    return `rgba(${Math.floor(Math.random()*256)},${Math.floor(Math.random()*256)},${Math.floor(Math.random()*256)},1)`;
-}
-
 randomColor.addEventListener("click", function(e){
-    redValue = Math.floor(Math.random()*256);
-    greenValue = Math.floor(Math.random()*256)
-    blueValue = Math.floor(Math.random()*256)
-    color = `rgba(${redValue},${greenValue},${blueValue},${alphaValue})`;
-    listenForHover(randomize());
+    if (random) {
+        random = false;
+    } else {
+        random = true;
+    }    
 });
