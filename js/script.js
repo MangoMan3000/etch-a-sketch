@@ -32,33 +32,33 @@ function listenForHover() {
         if (random) {
             color = `rgb(${Math.floor(Math.random()*256)},${Math.floor(Math.random()*256)},${Math.floor(Math.random()*256)})`
         } else {
-            color = "rgb(0,0,0)"
+            color = "rgb(0, 0, 0)"
         }
         if (scaling) {
             switch (String(this.style.backgroundColor)) {
                 case "rgb(230, 230, 230)":
-                    color = "rgb(204,204,204)";
+                    color = "rgb(204, 204, 204)";
                     break
                 case "rgb(204, 204, 204)":
-                    color = "rgb(179,179,179)";
+                    color = "rgb(179, 179, 179)";
                     break
                 case "rgb(179, 179, 179)":
-                    color = "rgb(153,153,153)";
+                    color = "rgb(153, 153, 153)";
                     break
                 case "rgb(153, 153, 153)":
                     color = "rgb(128, 128, 128)";
                     break
                 case "rgb(128, 128, 128)":
-                    color = "rgb(102,102,102)";
+                    color = "rgb(102, 102, 102)";
                     break
                 case "rgb(102, 102, 102)":
-                    color = "rgb(77,77,77)"
+                    color = "rgb(77, 77, 77)"
                     break
                 case "rgb(77, 77, 77)":
-                    color = "rgb(51,51,51)";
+                    color = "rgb(51, 51, 51)";
                     break
                 case "rgb(51, 51, 51)":
-                    color = "rgb(26,26,26)";
+                    color = "rgb(26, 26, 26)";
                 case "rgb(26, 26, 26)":
                     color = "rgb(0, 0, 0";
                     break
@@ -66,7 +66,7 @@ function listenForHover() {
                     color = "rbg(0, 0, 0)";
                     break
                 default:
-                    color = "rgb(230,230,230)";
+                    color = "rgb(230, 230, 230)";
             }
         }
         div.style.backgroundColor = color;
@@ -80,10 +80,7 @@ const randomColor = document.querySelector("#randomColor");
 const clear = document.querySelector("#clearGrid");
 const greyScale = document.querySelector("#greyScale");
 let value = 16;
-let rValue = 0;
-let gValue = 0;
-let bValue = 0;
-let color = `rgb(${rValue},${gValue},${bValue})`;
+let color = `rgb(0, 0, 0)`;
 let random = false;
 let scaling = false;
 
@@ -110,6 +107,8 @@ randomColor.addEventListener("click", function(e){
         random = false;
     } else {
         random = true;
+        clearGrid();
+        buildGrid(value);
     }    
 });
 
@@ -120,9 +119,5 @@ greyScale.addEventListener("click", function(e) {
         scaling = true;
         clearGrid();
         buildGrid(value);
-        rValue = 255;
-        gValue = 255;
-        bValue = 255;
-        color = `rgb(${rValue},${gValue},${bValue})`;
     }
 });
