@@ -35,11 +35,40 @@ function listenForHover() {
             color = "rgb(0,0,0)"
         }
         if (scaling) {
-            const colorAdd = 25.5;
-            rValue -= colorAdd;
-            gValue -= colorAdd;
-            bValue -= colorAdd;
-            color = `rgba(${rValue},${gValue},${bValue})`
+            switch (String(this.style.backgroundColor)) {
+                case "rgb(230, 230, 230)":
+                    color = "rgb(204,204,204)";
+                    break
+                case "rgb(204, 204, 204)":
+                    color = "rgb(179,179,179)";
+                    break
+                case "rgb(179, 179, 179)":
+                    color = "rgb(153,153,153)";
+                    break
+                case "rgb(153, 153, 153)":
+                    color = "rgb(128, 128, 128)";
+                    break
+                case "rgb(128, 128, 128)":
+                    color = "rgb(102,102,102)";
+                    break
+                case "rgb(102, 102, 102)":
+                    color = "rgb(77,77,77)"
+                    break
+                case "rgb(77, 77, 77)":
+                    color = "rgb(51,51,51)";
+                    break
+                case "rgb(51, 51, 51)":
+                    color = "rgb(26,26,26)";
+                case "rgb(26, 26, 26)":
+                    color = "rgb(0, 0, 0";
+                    break
+                case "rgb(0, 0, 0)":
+                    color = "rbg(0, 0, 0)";
+                    break
+                default:
+                    color = "rgb(230,230,230)";
+            }
+            console.log(div.style.backgroundColor);
         }
         div.style.backgroundColor = color;
     }));
@@ -90,6 +119,8 @@ greyScale.addEventListener("click", function(e) {
         scaling = false;
     } else {
         scaling = true;
+        clearGrid();
+        buildGrid(value);
         rValue = 255;
         gValue = 255;
         bValue = 255;
